@@ -1,7 +1,7 @@
 # Sudoku-solver
 
 ## Overview
-The `sudoku_solver` function in this notebook takes in a sudoku as a two-dimensional NumPy array and returns the solution of this sudoku as a new two-dimensional NumPy array. If there is no possible solution to the input sudoku then the values in the array returned will all be set to -1.
+The `solve_from_array` method of the `SudokuSolver` class takes in a sudoku as a two-dimensional NumPy array and returns the solution of this sudoku as a new two-dimensional NumPy array. If there is no possible solution to the input sudoku then the values in the array returned will all be set to -1.
 
 ## Sudokus
 A Sudoku board consists of a 9 by 9 grid split into 9 equally sized boxes of 3 by 3. The objective is to fill this grid such that each row, column, and box contains all the digits from 1 to 9. As a consequence of this the same digit cannot be repeated more than once in any of these groups as they all have exactly 9 cells.
@@ -12,7 +12,7 @@ The approach used here is depth first search backtracking with constraint satisf
 
 The basic implementation of this involves picking a cell at random and entering a number that does not breach the constraints. You continue to do this until there are no numbers that can be entered into the cell without breaching the constraints. When this happens, you backtrack and try another number in the previous cell.
 
-I implemented this in the `sudoku_solver` function using a recursive `depth_first_search` function which takes in a `SudokuState` object and returns either a solution if one is found or `None` if no solution exists.
+I implemented this in the `solve_from_array` method using a recursive `depth_first_search` function which takes in a `SudokuState` object and returns either a solution if one is found or `None` if no solution exists.
 
 In order to try possible options, the `set_value` method is used. This is called on a `SudokuState` object, with the row and column of a cell as arguments, and returns a copy of the state with this new value added. If this new state `is_goal` then it can be returned as the solution. Otherwise, providing the state is valid we can recursively call `depth_first_search` on it and return the result if it `is_goal`.
 
@@ -39,4 +39,4 @@ Thirdly, if we know that in a box a number has to be in a specific row or column
 
 ## Results
 
-I found that depth first search backtracking with constraint satisfaction was an effective approach to this problem. Utilising the heuristics that I have mentioned also significantly improved the speed at which the `sudoku_solver` was able to solve harder sudokus.
+I found that depth first search backtracking with constraint satisfaction was an effective approach to this problem. Utilising the heuristics that I have mentioned also significantly improved the speed at which the `solve_from_array` method was able to solve harder sudokus.
