@@ -286,7 +286,10 @@ class SudokuSolver():
         return self.solve_from_array(self.sudoku_csv_to_array(filepath))
 
     def run_tests(self, verbose=False):
-        difficulties = ["expert"]
+        """
+        Test data generated from https://qqwing.com/generate.html
+        """
+        difficulties = ["intermediate","expert"]
         for difficulty in difficulties:
             for i in range(1,11):
                 sudoku = self.sudoku_csv_to_array(f"test_sudokus/{difficulty}{i}.csv")
@@ -314,4 +317,3 @@ if __name__ == "__main__":
 
     # Solving test sudokus
     solver.run_tests(verbose=True)
-
